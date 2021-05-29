@@ -22,7 +22,7 @@ function algos(){
     projectHeader.position(_width*0.01, _height* 0.01)
     homeDir =  createA('https://spencerdwallace.github.io/Home', 'Back to Home Directory', "_self");
     homeDir.position(_width*0.45, _height* 0.05);
-    quickSort = createA('https://spencerdwallace.github.io/sorting_algorithms/Quick%20Sort/', 'Quick Sort', "_blank");
+    quickSort = createA('https://spencerdwallace.github.io/sorting_algorithms/Quick%20Sort/', 'Quick Sort', "_self");
     quickSort.position(_width*0.01, _height* 0.1);
 
 }
