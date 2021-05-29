@@ -22,13 +22,11 @@ function setup() {
     backToSA = createA('https://spencerdwallace.github.io/sorting_algorithms', 'Back to Sorting Algorithms', '_self');
     backToSA.position(_width/2 - textWidth('Back to Sorting Algorithms')/2,30);
     quickSort(arr, start, end);
-
 }
 
 function draw() {
     clear();
     background(10);
-
 
     for(let i = 0; i < size; i++ )
     {
@@ -68,9 +66,6 @@ async function swap(arr, n1, n2)
 
 async function partition(arr, low, high)
 {
-    /*for (let s = start; s < end; s++) {
-        state[s] = 1;
-    }*/
         // pivot (Element to be placed at right position)
     let pivot = arr[high];
     state[high] = 0;
