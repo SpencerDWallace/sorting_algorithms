@@ -18,7 +18,7 @@ function algos(){
     textStyle(NORMAL);
 
 
-    let projectHeader = createElement('h1', "Sorting Algortithms");
+    let projectHeader = createElement('h1', "Sorting Algorithms");
     projectHeader.position(_width*0.01, 0)
     homeDir =  createA('https://spencerdwallace.github.io/Home', 'Back to Home Directory', "_self");
     homeDir.position(_width/2 - textWidth('Back to Home Directory')/2, 30);
