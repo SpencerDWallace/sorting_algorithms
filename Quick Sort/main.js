@@ -15,7 +15,7 @@ function setup() {
     }
     let h = createElement('h1', 'Quick Sort');
     h.style('color', '#222222');
-    h.style('position', 'right')
+    h.position(_width*0.01, 0);
     h.size(_width, _height/5)
     button = createButton('Restart Sort (sort must be completed)');
     button.position(10, 70);
