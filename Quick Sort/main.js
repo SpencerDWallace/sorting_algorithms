@@ -21,13 +21,11 @@ function setup() {
     button.position(10, 70);
 
     quickSort(arr, start, end);
-
 }
 
 function draw() {
     clear();
     background(10);
-
 
     for(let i = 0; i < size; i++ )
     {
@@ -67,9 +65,6 @@ async function swap(arr, n1, n2)
 
 async function partition(arr, low, high)
 {
-    /*for (let s = start; s < end; s++) {
-        state[s] = 1;
-    }*/
         // pivot (Element to be placed at right position)
     let pivot = arr[high];
     state[high] = 0;
