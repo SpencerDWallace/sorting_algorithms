@@ -3,7 +3,7 @@ var canv;
 var size = Math.floor(_width/8);
 var arr = [size]; var state = [size];
 var start = 0; var end = size - 1;
-let rectW = Math.floor(_width/size);
+let rectW = Math.floor(_width/size); let button; var sorting;
 
 function setup() {
 
@@ -17,10 +17,11 @@ function setup() {
     h.style('color', '#222222');
     h.style('position', 'right')
     h.size(_width, _height/5)
-    //h.position( _width/2 - 100, 0);
+    button = createButton('Restart Sort (sort must be completed)');
+    button.position(10, 70);
 
+    quickSort(arr, start, end);
 
-        quickSort(arr, start, end);
 }
 
 function draw() {
@@ -35,14 +36,22 @@ function draw() {
         } else if (state[i] == 1) {
             fill('#55FF55');
         } else {
-            fill(255);
+            fill('#FFFFFFF');
         }
 
         rect(i*rectW, _height - arr[i], rectW, arr[i]);
     }
 
+    button.mousePressed(resetArr);
 
 }
+
+function resetArr()
+{
+    if(!sorting)
+    setup();
+}
+
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -72,8 +81,8 @@ async function partition(arr, low, high)
             // If current element is smaller than the pivot
         if (arr[j] < pivot)
         {
-
-            state[i] = -1;
+            if(state[i] != 1)
+                state[i] = -1;
             i++;
             state[i] = 0;// increment index of smaller element
             await swap(arr, i, j);
@@ -94,9 +103,13 @@ async function quickSort(arr, start, end)
     }
         /* pi is partitioning index, arr[pi] is now
            at right place */
+    sorting = true;
     let partitionIndex = await partition(arr, start, end);
-    state[partitionIndex] = -1;
+    //state[partitionIndex] = -1;
     //await Promise.all([quickSort(arr, start, partitionIndex - 1), quickSort(arr, partitionIndex + 1, end)])
+    for(let i = 0; i < start; i++){
+        state[i] = 1;
+    }
     await quickSort(arr, start, partitionIndex - 1);
 
     await quickSort(arr, partitionIndex + 1, end);
@@ -104,5 +117,6 @@ async function quickSort(arr, start, end)
     for(let i = start; i <= end; i++){
         state[i] = 1;
     }
+    sorting = false;
 }
 
