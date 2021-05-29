@@ -19,8 +19,10 @@ function setup() {
     h.size(_width, _height/5)
     button = createButton('Restart Sort (sort must be completed)');
     button.position(10, 70);
+    
     backToSA = createA('https://spencerdwallace.github.io/sorting_algorithms', 'Back to Sorting Algorithms', '_self');
     backToSA.position(_width/2 - textWidth('Back to Sorting Algorithms')/2,30);
+    
     quickSort(arr, start, end);
 }
 
