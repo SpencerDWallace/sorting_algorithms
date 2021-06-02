@@ -92,7 +92,7 @@ async function insertionSort(arr, start, end) {
             await sleep(1);
             arr[j + 1] = arr[j];
             state[j + 1] = 1;
-
+            state[j] = 0;
             j--;
         }
         arr[j + 1] = curr;
@@ -100,6 +100,9 @@ async function insertionSort(arr, start, end) {
 
 
     }
+    for(let i = 0; i <= end; i++)
+        state[i] = 1;
+
     sorting = false;
 }
 
