@@ -14,18 +14,18 @@ function setup() {
         arr[i] = _height * Math.random();
         state[i] = -1;
     }
-    let h = createElement('h1', 'Quick Sort');
+    let h = createElement('h1', 'Selection Sort');
     h.style('color', '#222222');
     h.position(_width*0.01, 0);
     h.size(_width, _height/5)
     button = createButton('Restart Sort (sort must be completed)');
     button.position(10, 70);
-    
+
     backToSA = createA('https://spencerdwallace.github.io/sorting_algorithms', 'Back to Sorting Algorithms', '_self');
     backToSA.position(_width/2 - textWidth('Back to Sorting Algorithms')/2,30);
     currTime = Date.now() / 1000;
     sortTime = 0;
-    quickSort(arr, start, end);
+    selectionSort(arr, start, end);
 }
 
 function draw() {
@@ -46,7 +46,7 @@ function draw() {
         } else if (state[i] == 1) {
             fill('#55FF55');
         } else {
-            fill('#FFFFFFF');
+            fill('#FFFFFF');
         }
 
         rect(i*rectW, _height - arr[i], rectW, arr[i]);
@@ -76,55 +76,27 @@ async function swap(arr, n1, n2)
     arr[n2] = temp;
 }
 
-async function partition(arr, low, high)
+async function selectionSort(arr, start, end)
 {
-        // pivot (Element to be placed at right position)
-    let pivot = arr[high];
-    state[high] = 0;
-    var i = low - 1; // Index of smaller element and indicates the
-          //state[i] = 0;             // right position of pivot found so far
 
-    for (let j = low; j <= high - 1; j++)
+    sorting = true;
+    for(let i = end; i > start; i--)
     {
-            // If current element is smaller than the pivot
-        if (arr[j] < pivot)
+        let high = arr[i];
+        for(let s = start; s < i; s++)
         {
-            if(state[i] != 1)
-                state[i] = -1;
-            i++;
-            state[i] = 0;// increment index of smaller element
-            await swap(arr, i, j);
+           if(arr[s] > high)
+           {
 
+               await swap(arr, s, i);
+               state[s] = 0;
+               high = arr[i];
+
+           }
+           state[i] = 1;
         }
     }
-    state[i] = 1;
-    await swap(arr, i + 1, high);
 
-    return (i + 1);
-
-}
-
-async function quickSort(arr, start, end)
-{
-    if (start >= end) {
-        return;
-    }
-        /* pi is partitioning index, arr[pi] is now
-           at right place */
-    sorting = true;
-    let partitionIndex = await partition(arr, start, end);
-    //state[partitionIndex] = -1;
-    //await Promise.all([quickSort(arr, start, partitionIndex - 1), quickSort(arr, partitionIndex + 1, end)])
-    for(let i = 0; i < start; i++){
-        state[i] = 1;
-    }
-    await quickSort(arr, start, partitionIndex - 1);
-
-    await quickSort(arr, partitionIndex + 1, end);
-
-    for(let i = start; i <= end; i++){
-        state[i] = 1;
-    }
     sorting = false;
 }
 
