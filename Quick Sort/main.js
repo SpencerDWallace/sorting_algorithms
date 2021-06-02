@@ -126,5 +126,6 @@ async function quickSort(arr, start, end)
         state[i] = 1;
     }
     sorting = false;
+
 }
 
