@@ -99,7 +99,7 @@ async function selectionSort(arr, start, end)
 
     sorting = false;
     await sleep(100);
-    
+
     for(let i = 0; i <= end; i++)
         state[i] = -1;
     await sleep(100);
