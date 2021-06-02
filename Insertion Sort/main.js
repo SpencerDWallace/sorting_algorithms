@@ -97,9 +97,10 @@ async function insertionSort(arr, start, end) {
         }
         arr[j + 1] = curr;
 
-        sorting = false;
+
 
     }
+    sorting = false;
 }
 
     async function binarySearch(arr, num, low, high) {
